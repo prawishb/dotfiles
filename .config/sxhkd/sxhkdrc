@@ -5,19 +5,18 @@
 # terminal emulator
 super + Return
 	alacritty
-
 # program launcher
 super + @space
 	rofi -show run
-
 # browser
 super + b
 	brave
-
 # color picker
 super + i
 	gpick
-
+# filemanager (pcmanfm)
+super + f
+	pcmanfm
 # system poweroff...
 super + shift + p
 	logout
@@ -29,10 +28,8 @@ super + Escape
 # XF86 keys
 XF86AudioRaiseVolume
 	pamixer -i 5
-
 XF86AudioLowerVolume
 	pamixer -d 5
-
 XF86AudioMute
 	pamixer -t
 

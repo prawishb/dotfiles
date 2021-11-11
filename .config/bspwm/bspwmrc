@@ -5,9 +5,9 @@ alias bc='bspc config'
 alias br='bspc rule'
 
 # Workspaces (two-monitor support)
-if [[ HDMI-A-0 = 'connected' ]]; then
-  bspc monitor eDP -d I II III IV
-  bspc monitor HDMI-A-0 -d V VI VII VIII
+if [[ $(xrandr -q | grep 'HDMI-A-0 connected') ]]; then
+  bspc monitor eDP -d I II III IV &
+  bspc monitor HDMI-A-0 -d V VI VII VIII &
 else
   bspc monitor eDP -d I II III IV V VI VII VIII &
 fi
@@ -16,8 +16,8 @@ fi
 killall sxhkd; sxhkd &
 killall picom; picom &
 xsetroot -cursor_name left_ptr &
-nitrogen --restore &
 ~/.config/polybar/launch.sh
+nitrogen --restore &
 
 # Other settings
 bc border_width         2
@@ -29,4 +29,4 @@ bc borderless_monocle   true
 bc gapless_monocle      true
 
 # Rules
-br -a xarchiver state=floating
+br -a Xarchiver state=floating
