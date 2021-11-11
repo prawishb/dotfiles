@@ -1,0 +1,32 @@
+#! /bin/sh
+
+# Variables
+alias bc='bspc config'
+alias br='bspc rule'
+
+# Workspaces (two-monitor support)
+if [[ HDMI-A-0 = 'connected' ]]; then
+  bspc monitor eDP -d I II III IV
+  bspc monitor HDMI-A-0 -d V VI VII VIII
+else
+  bspc monitor eDP -d I II III IV V VI VII VIII &
+fi
+
+# Autostart
+killall sxhkd; sxhkd &
+killall picom; picom &
+xsetroot -cursor_name left_ptr &
+nitrogen --restore &
+~/.config/polybar/launch.sh
+
+# Other settings
+bc border_width         2
+bc window_gap           7
+bc focused_border_color '#83a598'
+bc normal_border_color  '#454849'
+bc split_ratio          0.50
+bc borderless_monocle   true
+bc gapless_monocle      true
+
+# Rules
+br -a xarchiver state=floating

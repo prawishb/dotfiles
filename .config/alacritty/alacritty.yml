@@ -1,0 +1,17 @@
+window:
+  padding:
+    x: 10
+    y: 10
+
+  dynamic_padding: false
+
+font:
+  normal:
+    family: JetBrainsMono Nerd Font Mono
+
+  size: 9
+
+colors:
+  primary:
+    background: '#151515'
+    foreground: '#FFFFFF'
