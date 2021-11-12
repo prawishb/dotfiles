@@ -15,7 +15,7 @@ super + b
 super + i
 	gpick
 # filemanager (pcmanfm)
-super + f
+super + m
 	pcmanfm
 # system poweroff...
 super + shift + p

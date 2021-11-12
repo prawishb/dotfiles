@@ -6,10 +6,10 @@ alias br='bspc rule'
 
 # Workspaces (two-monitor support)
 if [[ $(xrandr -q | grep 'HDMI-A-0 connected') ]]; then
-  bspc monitor eDP -d I II III IV &
-  bspc monitor HDMI-A-0 -d V VI VII VIII &
+  bspc monitor eDP -d 1 2 3 4 &
+  bspc monitor HDMI-A-0 -d 5 6 7 8 &
 else
-  bspc monitor eDP -d I II III IV V VI VII VIII &
+  bspc monitor eDP -d 1 2 3 4 5 6 7 8 &
 fi
 
 # Autostart
@@ -22,9 +22,11 @@ nitrogen --restore &
 # Other settings
 bc border_width         2
 bc window_gap           7
-bc focused_border_color '#83a598'
+#bc focused_border_color '#a30822' #red
+bc focused_border_color '#3538df' #blue
 bc normal_border_color  '#454849'
 bc split_ratio          0.50
+bc top_padding		28
 bc borderless_monocle   true
 bc gapless_monocle      true
 
