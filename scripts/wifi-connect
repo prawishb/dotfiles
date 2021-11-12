@@ -1,0 +1,33 @@
+#!/bin/bash
+
+wifi_list=$(nmcli -g SSID dev wifi list)
+saved_wifi_list=$(nmcli -g NAME con show | sed '$ d')
+
+selected_ssid=$(printf '%s\n' "${wifi_list[@]}" | rofi -dmenu -p 'Select SSID to connect to')
+
+if [[ "${saved_wifi_list[*]}" =~ "${selected_ssid}" ]]; then
+  echo 'Wifi is in list'
+  choice=$(echo -e 'Connect\nForget' | rofi -dmenu -p "Select action for $selected_ssid")
+  case $choice in
+    'Connect')
+      echo "Connecting to $selected_ssid"
+      nmcli dev wifi connect $selected_ssid
+      if [[ "$(nmcli -g CONNECTION dev status | sed '1q')" == "${selected_ssid}" ]]; then
+	echo "Succesfully connected to $selected_ssid" && exit 0
+      else
+        echo "Failed to connect to $selected_ssid" && exit 0
+      fi
+    ;;
+    'Forget')
+      echo "Forgetting $selected_ssid"
+      nmcli connection delete $selected_ssid
+    ;;
+    *)
+      echo 'No action specified' && exit 1
+    ;;
+  esac
+else
+  echo "$selected_ssid not in list"
+  password=$(rofi -dmenu -p "Enter password for $selected_ssid")
+  nmcli dev wifi connect $selected_ssid password "$password"
+fi

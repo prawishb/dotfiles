@@ -1,0 +1,37 @@
+#!/bin/bash
+
+declare -a options=(
+  'Shutdown'
+  'Restart'
+  'Suspend'
+  'Exit'
+)
+
+selected=$(printf '%s\n' "${options[@]}" | rofi -dmenu -p 'Choose what to do')
+
+case $selected in
+  'Shutdown')
+    if [[ "$(echo -e 'Yes\nNo' | rofi -dmenu -p 'Confirm action')" == 'Yes' ]]; then
+      shutdown now
+    else
+      echo 'Not executing action!' && exit 1
+    fi;;
+  'Restart')
+    if [[ "$(echo -e 'Yes\nNo' | rofi -dmenu -p 'Confirm action')" == 'Yes' ]]; then
+      shutdown -r now 
+    else
+      echo 'Not executing action!' && exit 1
+    fi;;
+  'Suspend')
+    if [[ "$(echo -e 'Yes\nNo' | rofi -dmenu -p 'Confirm action')" == 'Yes' ]]; then
+      systemctl suspend
+    else
+      echo 'Not executing action!' && exit 1
+    fi;;
+  'Exit')
+    echo 'Not executing action!' && exit 1
+  ;;
+  *)
+    exit 0
+  ;;
+esac
