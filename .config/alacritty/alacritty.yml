@@ -1,3 +1,6 @@
+env:
+  TERM: xterm-256color
+
 window:
   padding:
     x: 10
@@ -11,7 +14,39 @@ font:
 
   size: 9
 
-colors:
-  primary:
-    background: '#151515'
-    foreground: '#FFFFFF'
+#colors:
+#  primary:
+#    background: '#151515'
+#    foreground: '#FFFFFF'
+
+scheme:
+  doom-one: &doom-one
+    primary:
+      background: '#151515'
+      foreground: '#bbc2cf'
+    cursor:
+      text: CellBackground
+      cursor: '#528bff'
+    selection:
+      text: CellForeground
+      background: '#3e4451'
+    normal:
+      black:   '#1c1f24'
+      red:     '#ff6c6b'
+      green:   '#98be65'
+      yellow:  '#da8548'
+      blue:    '#51afef'
+      magenta: '#c678dd'
+      cyan:    '#5699af'
+      white:   '#202328'
+    bright:
+      black:   '#5b6268'
+      red:     '#da8548'
+      green:   '#4db5bd'
+      yellow:  '#ecbe7b'
+      blue:    '#3071db'   # This is 2257a0 in Doom Emacs but I lightened it.
+      magenta: '#a9a1e1'
+      cyan:    '#46d9ff'
+      white:   '#dfdfdf'
+
+colors: *doom-one
